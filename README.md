@@ -1,7 +1,7 @@
-# MY-PRODUCT-NAME
+# patterns-utils
 
 [![CI Build](https://github.com/axonivy-market/REPO-NAME/actions/workflows/ci.yml/badge.svg)](https://github.com/axonivy-market/REPO-NAME/actions/workflows/ci.yml)
 
 "YOUR SHORT DESCRIPTION GOES HERE"
 
-Read our [documentation](MY-PRODUCT-NAME-product/README.md).
+Read our [documentation](patterns-utils-product/README.md).

@@ -7,7 +7,7 @@
         "projects": [
           {
             "groupId": "MY-GROUP-ID",
-            "artifactId": "MY-PRODUCT-NAME-demo",
+            "artifactId": "patterns-utils-demo",
             "version": "${version}",
             "type": "iar"
           }
@@ -29,7 +29,7 @@
         "dependencies": [
           {
             "groupId": "MY-GROUP-ID",
-            "artifactId": "MY-PRODUCT-NAME",
+            "artifactId": "patterns-utils",
             "version": "${version}",
             "type": "iar"
           }
@@ -51,7 +51,7 @@
         "dependencies": [
           {
             "groupId": "MY-GROUP-ID",
-            "artifactId": "MY-PRODUCT-NAME",
+            "artifactId": "patterns-utils",
             "version": "${version}"
           }
         ],
