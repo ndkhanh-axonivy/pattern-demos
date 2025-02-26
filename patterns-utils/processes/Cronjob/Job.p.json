@@ -1,0 +1,198 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "195422CD52B97552",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "Cronjob.JobData"
+  },
+  "elements" : [ {
+      "id" : "f3",
+      "type" : "CallSubStart",
+      "name" : "runJob(String,Boolean,String)",
+      "config" : {
+        "signature" : "runJob",
+        "input" : {
+          "params" : [
+            { "name" : "jobName", "type" : "String", "desc" : "" },
+            { "name" : "manual", "type" : "Boolean", "desc" : "" },
+            { "name" : "additionalJobData", "type" : "String", "desc" : "" }
+          ],
+          "map" : { }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 216 },
+        "labelOffset" : { "x" : 1, "y" : 33 }
+      },
+      "connect" : [
+        { "id" : "f13", "to" : "f5" }
+      ]
+    }, {
+      "id" : "f4",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 1536, "y" : 216 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f5",
+      "type" : "Alternative",
+      "name" : "Manual start?",
+      "config" : {
+        "conditions" : {
+          "f21" : "in.manual",
+          "f27" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 336, "y" : 216 },
+        "labelOffset" : { "y" : -24 }
+      },
+      "connect" : [
+        { "id" : "f27", "to" : "f6", "label" : {
+            "name" : "No",
+            "offset" : { "x" : -143, "y" : -10 }
+          }, "color" : "default" },
+        { "id" : "f21", "to" : "f20", "via" : [ { "x" : 336, "y" : 280 } ], "label" : {
+            "name" : "Yes",
+            "segment" : 1.11,
+            "offset" : { "x" : 19, "y" : -34 }
+          } }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "Run registered job",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.components.patterns.service.JobService;",
+            "out.result = JobService.get().runJob(in.jobName, in.additionalJobData);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 808, "y" : 216 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f7", "color" : "default" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "Alternative",
+      "name" : "Manual start?",
+      "config" : {
+        "conditions" : {
+          "f25" : "in.manual",
+          "f12" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 944, "y" : 216 },
+        "labelOffset" : { "y" : -24 }
+      },
+      "connect" : [
+        { "id" : "f12", "to" : "f9", "label" : {
+            "name" : "No",
+            "offset" : { "x" : -7, "y" : -10 }
+          }, "color" : "default" },
+        { "id" : "f25", "to" : "f11", "via" : [ { "x" : 944, "y" : 280 } ], "label" : {
+            "name" : "Yes",
+            "segment" : 1.35,
+            "offset" : { "x" : -47, "y" : -26 }
+          } }
+      ]
+    }, {
+      "id" : "f9",
+      "type" : "Alternative",
+      "name" : "ok?",
+      "config" : {
+        "conditions" : {
+          "f10" : "in.result.isOk()"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1072, "y" : 216 },
+        "labelOffset" : { "y" : -24 }
+      },
+      "connect" : [
+        { "id" : "f10", "to" : "f4", "label" : {
+            "name" : "Yes",
+            "offset" : { "x" : -7, "y" : -18 }
+          }, "color" : "default" },
+        { "id" : "f26", "to" : "f11", "via" : [ { "x" : 1072, "y" : 280 } ], "label" : {
+            "name" : "No",
+            "segment" : 1.14,
+            "offset" : { "x" : 6, "y" : -23 }
+          }, "color" : "Red" }
+      ]
+    }, {
+      "id" : "f11",
+      "type" : "UserTask",
+      "name" : "Admin task",
+      "visual" : {
+        "at" : { "x" : 1208, "y" : 280 }
+      },
+      "connect" : [
+        { "id" : "f15", "to" : "f14" }
+      ]
+    }, {
+      "id" : "f14",
+      "type" : "Alternative",
+      "name" : "Decision?",
+      "config" : {
+        "conditions" : {
+          "f18" : "in.adminDecision == com.axonivy.utils.patterns.enums.AdminDecision.RETRY",
+          "f16" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1344, "y" : 280 },
+        "labelOffset" : { "y" : -24 }
+      },
+      "connect" : [
+        { "id" : "f16", "to" : "f4", "via" : [ { "x" : 1392, "y" : 280 }, { "x" : 1456, "y" : 216 } ] },
+        { "id" : "f18", "to" : "f17", "via" : [ { "x" : 1344, "y" : 360 } ], "label" : {
+            "name" : "Retry",
+            "segment" : 1.09,
+            "offset" : { "x" : 32, "y" : -32 }
+          }, "color" : "Red" }
+      ]
+    }, {
+      "id" : "f17",
+      "type" : "Script",
+      "name" : "Set to manual",
+      "config" : {
+        "output" : {
+          "code" : "in.manual = true;"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1208, "y" : 360 }
+      },
+      "connect" : [
+        { "id" : "f19", "to" : "f5", "via" : [ { "x" : 336, "y" : 360 }, { "x" : 288, "y" : 312 }, { "x" : 288, "y" : 216 } ], "color" : "Red" }
+      ]
+    }, {
+      "id" : "f20",
+      "type" : "DialogCall",
+      "name" : "JobBackgroundNote",
+      "visual" : {
+        "at" : { "x" : 480, "y" : 280 }
+      },
+      "connect" : [
+        { "id" : "f22", "to" : "f23" }
+      ]
+    }, {
+      "id" : "f23",
+      "type" : "TaskSwitchEvent",
+      "name" : "System",
+      "visual" : {
+        "at" : { "x" : 616, "y" : 280 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f24", "to" : "f6", "via" : [ { "x" : 680, "y" : 280 }, { "x" : 680, "y" : 216 } ], "color" : "default" }
+      ]
+    } ]
+}
