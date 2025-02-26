@@ -66,6 +66,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.utils.patterns.service.JobService;",
             "import com.axonivy.components.patterns.service.JobService;",
             "out.result = JobService.get().runJob(in.jobName, in.additionalJobData);"
           ]
