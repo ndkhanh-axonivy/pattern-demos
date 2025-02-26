@@ -1,14 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.axonivy.utils.patterns</groupId><!-- your group id: e.g. com.axonivy.connector.<myconnector> or com.axonivy.utils.<myutil> -->
-  <name>patterns-utils</name><!-- fill your product name -->
-  <artifactId>patterns-utils-modules</artifactId><!-- fill your product name + a "-modules" postfix -->
+  <groupId>com.axonivy.demo</groupId><!-- your group id: e.g. com.axonivy.connector.<myconnector> or com.axonivy.utils.<myutil> -->
+  <name>pattern-demos</name><!-- fill your product name -->
+  <artifactId>pattern-demos-modules</artifactId><!-- fill your product name + a "-modules" postfix -->
   <version>12.0.0-SNAPSHOT</version><!-- identicate your minimal compliant ivy version with the first 2 digits -->
   <packaging>pom</packaging>
 
   <modules>
     <module>${project.name}</module>
-    <module>${project.name}-demo</module>
     <module>${project.name}-test</module>
     <module>${project.name}-product</module>
   </modules>
