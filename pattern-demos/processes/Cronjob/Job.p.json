@@ -178,6 +178,9 @@
       "id" : "f20",
       "type" : "DialogCall",
       "name" : "JobBackgroundNote",
+      "config" : {
+        "dialog" : "com.axonivy.demo.patterndemos.ui.admin.JobBackgroundNote:start(String,String)"
+      },
       "visual" : {
         "at" : { "x" : 480, "y" : 280 }
       },

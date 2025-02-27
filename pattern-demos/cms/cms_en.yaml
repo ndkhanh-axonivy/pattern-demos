@@ -1,0 +1,18 @@
+Dialogs:
+  com:
+    axonivy:
+      demo:
+        patterndemos:
+          ui:
+            admin:
+              JobBackgroundNote:
+                details: |-
+                  Press ''Start'' to start job ''{0}'' in the background. As soon as it is finished, the administrator gets a task to see the technical details of the execution.
+
+                  Additional Job Data: ''{1}''
+                lockedNote: Job ''{0}'' is locked and probably running. To start this job you must unlock it first.
+                start: Start
+                title: Job note
+                unlock: Unlock
+Labels:
+  cancel: Cancel

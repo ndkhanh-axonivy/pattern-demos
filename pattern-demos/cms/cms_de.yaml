@@ -1,0 +1,17 @@
+Dialogs:
+  com:
+    axonivy:
+      demo:
+        patterndemos:
+          ui:
+            admin:
+              JobBackgroundNote:
+                details: |-
+                  Drücken Sie ''Start'' um den Job ''{0}'' im Hintergrund auszuführen. Sobald er beendet ist, erhält der Administrator eine Aufgabe mit den technischen Details der Ausführung.
+
+                  Zusätzliche Job Daten: ''{1}''
+                lockedNote: Der Job ''{0}'' ist gesperrt und läuft möglicherweise bereits. Um ihn dennoch auszuführen, muss er zuerst entsperrt werden.
+                start: Starten
+                unlock: Entsperren
+Labels:
+  cancel: Abbrechen
