@@ -1,4 +1,4 @@
-package com.axonivy.utils.patterns.test;
+package com.axonivy.demo.patterndemos.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
