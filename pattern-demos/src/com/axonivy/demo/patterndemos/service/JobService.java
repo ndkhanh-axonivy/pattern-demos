@@ -11,12 +11,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import com.axonivy.demo.patterndemos.Constants;
+import com.axonivy.demo.patterndemos.dao.JobStatusDAO;
 import com.axonivy.demo.patterndemos.entities.JobStatus;
 import com.axonivy.demo.patterndemos.entities.Lock;
 import com.axonivy.demo.patterndemos.enums.JobRunStatus;
 import com.axonivy.demo.patterndemos.pojos.ServiceResult;
 import com.axonivy.demo.patterndemos.pojos.ServiceResult.ResultStatus;
-import com.axonivy.utils.persistence.service.DateService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -256,8 +256,8 @@ public class JobService {
 
 		jobStatus = saveJobStatus(jobStatus);
 
-		LOG.info("Job ''{0}'' started at ''{1}'', additionalJobData: ''{2}''",
-				jobStatus.getName(), DateService.get().toDefaultString(jobStatus.getStartTime()), jobStatus.getAdditionalJobData());
+		
+//		Ivy.log().info(MessageFormatter.format("Job ''{0}'' started at ''{1}'', additionalJobData: ''{2}''", jobStatus.getName(), DateService.get().toDefaultString(jobStatus.getStartTime()), jobStatus.getAdditionalJobData()).getMessage());
 
 		return lastJobStatus;
 	}
@@ -290,13 +290,12 @@ public class JobService {
 
 		jobStatus = saveJobStatus(jobStatus);
 
-
-		LOG.info("Job ''{0}'' started at ''{1}'' and ended at ''{2}'' with status ''{3}'', additionalJobData: ''{4}''",
-				jobStatus.getName(),
-				DateService.get().toDefaultString(jobStatus.getStartTime()),
-				DateService.get().toDefaultString(jobStatus.getEndTime()),
-				jobStatus.getRunStatus(),
-				jobStatus.getAdditionalJobData());
+//		LOG.info("Job ''{0}'' started at ''{1}'' and ended at ''{2}'' with status ''{3}'', additionalJobData: ''{4}''",
+//				jobStatus.getName(),
+//				DateService.get().toDefaultString(jobStatus.getStartTime()),
+//				DateService.get().toDefaultString(jobStatus.getEndTime()),
+//				jobStatus.getRunStatus(),
+//				jobStatus.getAdditionalJobData());
 
 		return jobStatus;
 	}

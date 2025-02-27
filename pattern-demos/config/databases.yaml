@@ -1,2 +1,7 @@
 # yaml-language-server: $schema=https://json-schema.axonivy.com/app/12.0.0/databases.json
 Databases:
+  patterns-demo:
+    Url: jdbc:hsqldb:mem:patterns_demo
+    Driver: org.hsqldb.jdbc.JDBCDriver
+    UserName: sa
+    Password: ${decrypt:wPU92HMFH8zknRu0JgyQ9Q==}

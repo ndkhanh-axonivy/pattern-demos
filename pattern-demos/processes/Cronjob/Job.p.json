@@ -67,7 +67,7 @@
         "output" : {
           "code" : [
             "import com.axonivy.demo.patterndemos.service.JobService;",
-            "import com.axonivy.components.patterns.service.JobService;",
+            "import com.axonivy.demo.patterndemos.service.JobService;",
             "out.result = JobService.get().runJob(in.jobName, in.additionalJobData);"
           ]
         }

@@ -9,6 +9,7 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.helpers.MessageFormatter;
 
 import com.axonivy.demo.patterndemos.Constants;
+import com.axonivy.demo.patterndemos.dao.LockDAO;
 import com.axonivy.demo.patterndemos.entities.Lock;
 
 import ch.ivyteam.ivy.bpm.error.BpmError;

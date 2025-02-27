@@ -15,7 +15,7 @@ import org.slf4j.helpers.MessageFormatter;
 import com.axonivy.demo.patterndemos.Constants;
 import com.axonivy.demo.patterndemos.enums.JobRunStatus;
 import com.axonivy.demo.patterndemos.service.JobService;
-import com.axonivy.utils.persistence.beans.GenericIdEntity;
+import com.axonivy.utils.persistence.beans.AuditableIdEntity;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -23,7 +23,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 @Entity
 @Table
-public class JobStatus extends GenericIdEntity {
+public class JobStatus extends AuditableIdEntity {
 	private static final long serialVersionUID = 1L;
 	public static final int MAX_MESSAGE_LENGTH = 1024*1024;
 //	private static final Logger LOG = LogService.get().getLogger();

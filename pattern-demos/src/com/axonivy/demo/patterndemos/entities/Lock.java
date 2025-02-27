@@ -7,11 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import com.axonivy.demo.patterndemos.Constants;
-import com.axonivy.utils.persistence.beans.GenericIdEntity;
+import com.axonivy.utils.persistence.beans.AuditableIdEntity;
 
 @Entity
 @Table
-public class Lock extends GenericIdEntity {
+public class Lock extends AuditableIdEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Column(length = Constants.LARGE_COLUMN_LENGTH)
