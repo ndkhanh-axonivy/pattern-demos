@@ -1,0 +1,41 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "195417CC8C3AF94C",
+  "config" : {
+    "data" : "com.axonivy.demo.patterndemos.ui.primefacesextensions.PrimefacesExtensions.PrimefacesExtensionsData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start",
+      "config" : {
+        "signature" : "start"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 512, "y" : 64 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "Demo of primefaces extension",
+      "config" : {
+        "dialog" : "com.axonivy.demo.patterndemos.ui.primefacesextensions.PrimefacesExtensions:start()"
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f1", "color" : "default" }
+      ]
+    } ]
+}
