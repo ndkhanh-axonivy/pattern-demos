@@ -1,0 +1,75 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<ui:composition template="/layouts/frame-10-full-width.xhtml">
+		<ui:define name="title">#{ivy.cms.co('/Dialogs/at/ac/fwf/panda/core/ui/admin/AdminTask/title')}</ui:define>
+		<ui:define name="content">
+
+			<h:form id="form">
+				<div class="ui-fluid">
+					<div class="grid">
+						<div class="col-12 md:col-12 lg:col-12">
+							<h2>#{ivy.cms.co('/Dialogs/at/ac/fwf/panda/core/ui/admin/AdminTask/description')}</h2>
+						</div>
+					</div>
+					<div class="grid">
+						<div class="col-12 md:col-12 lg:col-12">#{data.bean.task}</div>
+					</div>
+					<p:outputPanel rendered="#{not empty data.bean.details}">
+						<div class="grid">
+							<div class="col-12 md:col-12 lg:col-12">
+								<pre>
+									<h:outputText value="#{data.bean.details}" />
+								</pre>
+							</div>
+						</div>
+					</p:outputPanel>
+
+					<div class="grid justify-content-end">
+						<h:panelGroup rendered="#{data.bean.hasIgnore()}">
+							<div class="col-12 md:col-2 lg:col-2">
+								<p:commandButton id="ignore" actionListener="#{logic.ignore}" value="#{ivy.cms.co('/Dialogs/at/ac/fwf/panda/core/ui/admin/AdminTask/ignore')}" icon="fa fa-check" update="form">
+									<p:confirm
+										header="#{ivy.cms.co('/Dialogs/at/ac/fwf/panda/core/ui/admin/AdminTask/ignoreConfirmationHeader')}"
+										message="#{ivy.cms.co('/Dialogs/at/ac/fwf/panda/core/ui/admin/AdminTask/ignoreConfirmationMessage')}"
+										icon="pi pi-exclamation-triangle" />
+								</p:commandButton>
+								<p:tooltip for="ignore" value="#{ivy.cms.co('/Dialogs/at/ac/fwf/panda/core/ui/admin/AdminTask/ignoreTooltip')}" position="top"
+								/>
+							</div>
+						</h:panelGroup>
+						<h:panelGroup rendered="#{data.bean.hasDone()}">
+							<div class="col-12 md:col-2 lg:col-2">
+								<p:commandButton id="done" actionListener="#{logic.done}" value="#{ivy.cms.co('/Dialogs/at/ac/fwf/panda/core/ui/admin/AdminTask/done')}" icon="fa fa-check" update="form" />
+								<p:tooltip for="done" value="#{ivy.cms.co('/Dialogs/at/ac/fwf/panda/core/ui/admin/AdminTask/doneTooltip')}" position="top"
+								/>
+							</div>
+						</h:panelGroup>
+						<h:panelGroup rendered="#{data.bean.hasRetry()}">
+							<div class="col-12 md:col-2 lg:col-2">
+								<p:commandButton id="retry" actionListener="#{logic.retry}" value="#{ivy.cms.co('/Labels/retry')}" icon="fa fa-redo" update="form" />
+								<p:tooltip for="retry" value="#{ivy.cms.co('/Dialogs/at/ac/fwf/panda/core/ui/admin/AdminTask/retryTooltip')}" position="top"
+								/>
+							</div>
+						</h:panelGroup>
+						<h:panelGroup rendered="#{data.bean.hasCheckLater()}">
+							<div class="col-12 md:col-2 lg:col-2">
+								<p:commandButton id="checkLater" actionListener="#{ivyWorkflowView.cancelToHome()}" value="#{ivy.cms.co('/Dialogs/at/ac/fwf/panda/core/ui/admin/AdminTask/checkLater')}"
+									icon="fa fa-times" immediate="true" />
+								<p:tooltip for="checkLater" value="#{ivy.cms.co('/Dialogs/at/ac/fwf/panda/core/ui/admin/AdminTask/checkLaterTooltip')}" position="top"
+								/>
+							</div>
+						</h:panelGroup>
+					</div>
+				</div>
+				<p:confirmDialog id="adminTaskConfirmationDialog" global="true" showEffect="fade" hideEffect="fade" responsive="true" width="500" height="50" closable="false">
+					<p:commandButton value="#{ivy.cms.co('/Labels/yes')}" id="yes" icon="fa fa-check" type="button" styleClass="ui-confirmdialog-yes" />
+					<p:commandButton value="#{ivy.cms.co('/Labels/no')}" id="no" icon="fa fa-times" type="button" styleClass="ui-confirmdialog-no" />
+				</p:confirmDialog>
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>
