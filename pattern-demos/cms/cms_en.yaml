@@ -5,6 +5,18 @@ Dialogs:
         patterndemos:
           ui:
             admin:
+              AdminTask:
+                checkLater: Check later
+                checkLaterTooltip: Keep this task to check later
+                description: Description
+                done: Done
+                doneTooltip: Done, continue process
+                ignore: ignore
+                ignoreConfirmatationHeader: Continue?
+                ignoreConfirmatationMessage: Do you really want to ignore and continue the process?
+                ignoreTooltip: Ignore and continue process
+                retryTooltip: Retry the operation
+                title: Admin Decision
               JobBackgroundNote:
                 details: |-
                   Press ''Start'' to start job ''{0}'' in the background. As soon as it is finished, the administrator gets a task to see the technical details of the execution.
@@ -16,3 +28,14 @@ Dialogs:
                 unlock: Unlock
 Labels:
   cancel: Cancel
+  'no': 'No'
+  retry: Retry
+  'yes': 'Yes'
+Tasks:
+  Description:
+    checkJobResult: |-
+      Check result of job ''{0}''. Overall Status: {1}
+
+      Additional Job Data: ''{2}''
+  Names:
+    checkJobResult: Check result of job ''{0}'' with overall status ''{1}''.

@@ -1,0 +1,91 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "1955AD96DBF7FE56",
+  "config" : {
+    "data" : "AdminTask.DemoData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start",
+      "config" : {
+        "signature" : "start",
+        "input" : {
+          "map" : { },
+          "code" : [
+            "import com.axonivy.demo.patterndemos.enums.AdminDecision;",
+            "out.jobName = \"Demo JOB\";",
+            "out.additionalJobData = \"Additional JOB data\";",
+            "out.adminDecision = AdminDecision.RETRY;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 632, "y" : 64 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "UserTask",
+      "name" : "AdminTask",
+      "config" : {
+        "dialog" : "com.axonivy.demo.patterndemos.ui.admin.AdminTask:start(String,String,List<com.axonivy.demo.patterndemos.enums.AdminDecision>)",
+        "call" : {
+          "map" : {
+            "param.task" : "ivy.cms.co(\"/Tasks/Names/checkJobResult\", [in.jobName, in.result.getStatus()])",
+            "param.details" : "in.result.toStringList()"
+          },
+          "code" : [
+            "import com.axonivy.demo.patterndemos.enums.AdminDecision;",
+            "if(in.result.isOk()) {",
+            "  param.buttons = [AdminDecision.CHECK_LATER, AdminDecision.IGNORE, AdminDecision.RETRY];",
+            "",
+            "}else{",
+            "  param.buttons = [AdminDecision.CHECK_LATER, AdminDecision.DONE];",
+            "}"
+          ]
+        },
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Tasks/Names/checkJobResult\", [in.jobName, in.result.getStatus()])%>",
+          "description" : "<%=ivy.cms.co(\"/Tasks/Description/checkJobResult\", [in.jobName, in.result.getStatus(), in.additionalJobData])%>",
+          "category" : "ADMIN"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 360, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f5", "color" : "default" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "Alternative",
+      "name" : "decision?",
+      "config" : {
+        "conditions" : {
+          "f6" : "",
+          "f7" : "in.adminDecision == \"RETRY\""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 520, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f1", "color" : "default" },
+        { "id" : "f7", "to" : "f3", "via" : [ { "x" : 520, "y" : 152 }, { "x" : 192, "y" : 152 } ], "label" : {
+            "name" : "retry",
+            "segment" : 1.3,
+            "offset" : { "x" : -70, "y" : 14 }
+          } }
+      ]
+    } ]
+}

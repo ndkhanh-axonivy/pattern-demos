@@ -5,6 +5,16 @@ Dialogs:
         patterndemos:
           ui:
             admin:
+              AdminTask:
+                checkLater: Später prüfen
+                checkLaterTooltip: Aufgabe behalten und später prüfen
+                done: Erledigt
+                doneTooltip: Erledigt, im Prozess weitergehen
+                ignore: ignore
+                ignoreConfirmatationHeader: Weiter?
+                ignoreConfirmatationMessage: Wollen Sie wirklich ignorieren und im Prozess weitergehen?
+                ignoreTooltip: Ignorieren und im Prozess weitergehen
+                retryTooltip: Operation erneut durchführen
               JobBackgroundNote:
                 details: |-
                   Drücken Sie ''Start'' um den Job ''{0}'' im Hintergrund auszuführen. Sobald er beendet ist, erhält der Administrator eine Aufgabe mit den technischen Details der Ausführung.
@@ -15,3 +25,14 @@ Dialogs:
                 unlock: Entsperren
 Labels:
   cancel: Abbrechen
+  'no': Nein
+  retry: Erneut versuchen
+  'yes': Ja
+Tasks:
+  Description:
+    checkJobResult: |-
+      Überprüfen Sie das Resultat von Job ''{0}''. Gesamtstatus: {1}
+
+      Zusätzliche Job Daten: ''{2}''
+  Names:
+    checkJobResult: Überprüfen Sie das Resultat von Job ''{0}'' mit dem Gesamtstatus ''{1}''.

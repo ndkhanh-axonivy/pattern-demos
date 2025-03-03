@@ -19,6 +19,63 @@ public class AdminTaskBean {
 		}
 
 	/**
+	 * Has it "check later" button?
+	 *
+	 * @return
+	 */
+	public boolean hasCheckLater() {
+		return hasButton(AdminDecision.CHECK_LATER);
+	}
+
+	/**
+	 * Has it "ignore" button?
+	 *
+	 * @return
+	 */
+	public boolean hasIgnore() {
+		return hasButton(AdminDecision.IGNORE);
+	}
+
+	/**
+	 * Has it "done" button?
+	 *
+	 * @return
+	 */
+	public boolean hasDone() {
+		return hasButton(AdminDecision.DONE);
+	}
+
+	/**
+	 * Has it "retry" button?
+	 *
+	 * @return
+	 */
+	public boolean hasRetry() {
+		return hasButton(AdminDecision.RETRY);
+	}
+
+	/**
+	 * Should this buttons be shown?
+	 *
+	 * @param adminDecisionString
+	 * @return
+	 */
+	public boolean hasButton(String adminDecisionString) {
+		AdminDecision adminDecision = AdminDecision.valueOf(adminDecisionString);
+		return hasButton(adminDecision);
+	}
+	
+	/**
+	 * Should this buttons be shown?
+	 *
+	 * @param adminDecision
+	 * @return
+	 */
+	public boolean hasButton(AdminDecision adminDecision) {
+		return buttons.contains(adminDecision);
+	}
+	
+	/**
 	 * @return the task
 	 */
 	public String getTask() {

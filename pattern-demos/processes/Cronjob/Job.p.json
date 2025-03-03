@@ -131,6 +131,9 @@
       "id" : "f11",
       "type" : "UserTask",
       "name" : "Admin task",
+      "config" : {
+        "dialog" : "com.axonivy.demo.patterndemos.ui.admin.AdminTask:start(String,String,List<com.axonivy.demo.patterndemos.enums.AdminDecision>)"
+      },
       "visual" : {
         "at" : { "x" : 1208, "y" : 280 }
       },

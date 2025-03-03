@@ -1,0 +1,22 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "DemoData",
+  "namespace" : "AdminTask",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "jobName",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "additionalJobData",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "result",
+    "type" : "com.axonivy.demo.patterndemos.pojos.ServiceResult",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "adminDecision",
+    "type" : "com.axonivy.demo.patterndemos.enums.AdminDecision"
+  } ]
+}

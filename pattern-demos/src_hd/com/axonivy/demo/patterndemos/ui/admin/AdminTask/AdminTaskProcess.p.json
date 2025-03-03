@@ -17,7 +17,9 @@
             { "name" : "details", "type" : "String", "desc" : "" },
             { "name" : "buttons", "type" : "List<com.axonivy.demo.patterndemos.enums.AdminDecision>", "desc" : "" }
           ],
-          "map" : { }
+          "map" : {
+            "out.bean" : "new com.axonivy.demo.patterndemos.ui.admin.AdminTaskBean(param.task, param.details, param.buttons)"
+          }
         },
         "guid" : "1954CE62138AFC80"
       },
