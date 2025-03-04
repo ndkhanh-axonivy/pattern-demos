@@ -26,11 +26,17 @@ Dialogs:
                 start: Start
                 title: Job note
                 unlock: Unlock
+                unlockError: Job ''{0}'' could not be unlocked. Please check the logs.
 Labels:
   cancel: Cancel
   'no': 'No'
   retry: Retry
   'yes': 'Yes'
+Processes:
+  Descriptions:
+    demoJob: Demo cron job.
+  Names:
+    demoJob: 'Manual Jobstart: Demo job'
 Tasks:
   Description:
     checkJobResult: |-
