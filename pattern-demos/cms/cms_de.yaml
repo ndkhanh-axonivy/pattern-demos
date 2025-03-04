@@ -23,11 +23,17 @@ Dialogs:
                 lockedNote: Der Job ''{0}'' ist gesperrt und läuft möglicherweise bereits. Um ihn dennoch auszuführen, muss er zuerst entsperrt werden.
                 start: Starten
                 unlock: Entsperren
+                unlockError: Job ''{0}'' konnte nicht entsperrt werden. Bitte prüfen Sie die Logs.
 Labels:
   cancel: Abbrechen
   'no': Nein
   retry: Erneut versuchen
   'yes': Ja
+Processes:
+  Descriptions:
+    demoJob: Demo cron job.
+  Names:
+    demoJob: 'Manual Jobstart: Demo job'
 Tasks:
   Description:
     checkJobResult: |-

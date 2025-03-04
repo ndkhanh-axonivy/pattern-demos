@@ -1,0 +1,71 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "195475D6EEE5029A",
+  "config" : {
+    "data" : "Cronjob.CronJobData"
+  },
+  "elements" : [ {
+      "id" : "f3",
+      "type" : "ProgramStart",
+      "name" : "Run demo job",
+      "config" : {
+        "javaClass" : "ch.ivyteam.ivy.process.eventstart.beans.TimerBean",
+        "userConfig" : {
+          "time" : "demoStartCronJobPattern"
+        },
+        "link" : "eventLink.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 80 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1", "via" : [ { "x" : 144, "y" : 80 }, { "x" : 160, "y" : 112 } ] }
+      ]
+    }, {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "Manual job run",
+      "config" : {
+        "signature" : "start",
+        "input" : {
+          "map" : {
+            "out.manual" : "true"
+          }
+        },
+        "request" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/Names/demoJob\")%>",
+          "description" : "<%=ivy.cms.co(\"/Processes/Descriptions/demoJob\")%>"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 144 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f1", "via" : [ { "x" : 144, "y" : 144 }, { "x" : 160, "y" : 112 } ] }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "SubProcessCall",
+      "name" : [
+        "Automatic Processes/Job",
+        "runJob"
+      ],
+      "config" : {
+        "processCall" : "Cronjob/Job:runJob(String,Boolean,String)"
+      },
+      "visual" : {
+        "at" : { "x" : 312, "y" : 112 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f5" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 464, "y" : 112 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    } ]
+}

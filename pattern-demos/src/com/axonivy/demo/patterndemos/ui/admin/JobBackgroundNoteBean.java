@@ -29,7 +29,7 @@ public class JobBackgroundNoteBean {
 		Ivy.log().info(new MessageFormatMessage("Manually unlocking job ''{0}''", jobName).getFormattedMessage());
 		boolean unlocked = JobService.get().forceUnlock(jobName, Duration.ofSeconds(10));
 		if(!unlocked) {
-			UiService.get().createFacesMessageCmsError("/Dialogs/at/ac/fwf/panda/core/ui/admin/JobBackgroundNote/unlockError", jobName);
+			UiService.get().createFacesMessageCmsError("/Dialogs/com/axonivy/demo/patterndemos/ui/admin/JobBackgroundNote/unlockError", jobName);
 		}
 		locked = JobService.get().isLocked(jobName);
 	}

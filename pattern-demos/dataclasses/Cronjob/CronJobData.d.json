@@ -1,0 +1,16 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "CronJobData",
+  "namespace" : "Cronjob",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "result",
+    "type" : "com.axonivy.demo.patterndemos.pojos.ServiceResult"
+  }, {
+    "name" : "manual",
+    "type" : "Boolean"
+  }, {
+    "name" : "jobName",
+    "type" : "String"
+  } ]
+}
