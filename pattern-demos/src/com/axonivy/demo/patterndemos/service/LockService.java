@@ -6,7 +6,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.function.Supplier;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.slf4j.helpers.MessageFormatter;
+import org.apache.logging.log4j.message.MessageFormatMessage;
 
 import com.axonivy.demo.patterndemos.Constants;
 import com.axonivy.demo.patterndemos.dao.LockDAO;
@@ -16,7 +16,6 @@ import ch.ivyteam.ivy.bpm.error.BpmError;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class LockService {
-//	private static final Logger LOG = LogService.get().getLogger();
 	private static final LockService INSTANCE = new LockService();
 	private static final Duration RETRY_INTERVAL = Duration.of(500L, ChronoUnit.MILLIS);
 
@@ -96,16 +95,13 @@ public class LockService {
 		}
 
 		if(lock.isLocked() && (lock.getValidUntil() == null || Instant.now().isBefore(lock.getValidUntil()))) {
-			Ivy.log().info(MessageFormatter.format("Cannot get lock {} because it is already locked, valid until is {}", lock.getName(), lock.getValidUntil()).getMessage());
-//			LOG.info("Cannot get lock {0} because it is already locked, valid until is {1}", lock.getName(), lock.getValidUntil());
+			Ivy.log().info(new MessageFormatMessage("Cannot get lock {} because it is already locked, valid until is {}", lock.getName(), lock.getValidUntil()).getFormattedMessage());
 		}
 		else {
 			try {
 				lock.setLocked(true);
 				lock.setValidUntil(validUntil);
-//				LOG.info("Locking {0}, valid until is {1}.", lock.getName(), lock.getValidUntil());
-
-//				testSleep();
+				Ivy.log().info(new MessageFormatMessage("Locking {0}, valid until is {1}.", lock.getName(), lock.getValidUntil()).getFormattedMessage());
 
 				lock = LockDAO.get().save(lock);
 				locked = lock.isLocked();
@@ -114,9 +110,7 @@ public class LockService {
 					throw e;
 				}
 				else {
-					Ivy.log().warn(MessageFormatter.format("Exception while trying to lock {0}: {1}", lock.getName(), ExceptionUtils.getRootCauseMessage(e)).getMessage());
-//					LOG.info("Cannot get lock {0} because it is already locked, valid until is {1}", lock.getName(), lock.getValidUntil());
-//					LOG.warn("Exception while trying to lock {0}: {1}", lock.getName(), ExceptionUtils.getRootCauseMessage(e));
+					Ivy.log().warn(new MessageFormatMessage("Exception while trying to lock {0}: {1}", lock.getName(), ExceptionUtils.getRootCauseMessage(e)).getFormattedMessage());
 				}
 			}
 		}
@@ -175,15 +169,13 @@ public class LockService {
 		unlocked = !lock.isLocked();
 
 		if(unlocked) {
-			Ivy.log().info(MessageFormatter.format("Lock {0} is already unlocked, no further activity.", lock.getName()).getMessage());
-//			LOG.info("Lock {0} is already unlocked, no further activity.", lock.getName());
+			Ivy.log().info(new MessageFormatMessage("Lock {0} is already unlocked, no further activity.", lock.getName()).getFormattedMessage());
 		}
 		else {
 			try {
 				lock.setLocked(false);
 				lock.setValidUntil(null);
-				Ivy.log().info(MessageFormatter.format("Unlocking {0}.", lock.getName()).getMessage());
-//				LOG.info("Unlocking {0}.", lock.getName());
+				Ivy.log().info(new MessageFormatMessage("Unlocking {0}.", lock.getName()).getFormattedMessage());
 
 				lock = LockDAO.get().save(lock);
 				unlocked = !lock.isLocked();
@@ -192,8 +184,7 @@ public class LockService {
 					throw e;
 				}
 				else {
-					Ivy.log().warn("Exception while trying to lock {0}: {1}", lock.getName(), ExceptionUtils.getRootCauseMessage(e));
-//					LOG.warn("Exception while trying to lock {0}: {1}", lock.getName(), ExceptionUtils.getRootCauseMessage(e));
+					Ivy.log().warn(new MessageFormatMessage("Exception while trying to lock {0}: {1}", lock.getName(), ExceptionUtils.getRootCauseMessage(e)).getFormattedMessage());
 				}
 			}
 		}
@@ -263,7 +254,7 @@ public class LockService {
 			result = function.get();
 	
 			if(!result) {
-//				LOG.debug("Could not {0}, retrying until {1}.", what, tryDuration);
+				Ivy.log().debug(new MessageFormatMessage("Could not {0}, retrying until {1}.", what, tryDuration).getFormattedMessage());
 				try {
 					Thread.sleep(RETRY_INTERVAL.toMillis());
 				} catch (InterruptedException e) {

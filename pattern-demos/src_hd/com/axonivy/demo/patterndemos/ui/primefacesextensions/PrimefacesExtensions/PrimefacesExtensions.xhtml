@@ -12,28 +12,29 @@
 
 			<h:form id="form">
 			</h:form>
-			<h2>Primefaces extension of component p:inputText</h2>
-			<p>In this extension we added check for byte length of input (instead of character
-				length) to init method (PrimeFaces.widget.InputText.prototype.init).</p>
+			<h2>#{ivy.cms.co('/Dialogs/com/axonivy/demo/patterndemos/ui/primefacesextensions/PrimefacesExtensions/title')}</h2>
+			<h3>#{ivy.cms.co('/Dialogs/com/axonivy/demo/patterndemos/ui/primefacesextensions/PrimefacesExtensions/description')}</h3>
 			<div class="grid">
 				<div class="col-12 md:col-6 lg:col-2">
 					<p:outputLabel for="@next" value="Username" />
 				</div>
 				<div class="col-12 md:col-6 lg:col-4">
 					<p:inputText id="inputText" value="#{data.bean.username}"
-						requiredMessage="Username input field is empty."
-						required="true" maxlength="10" />
+						requiredMessage="Username input field is empty." required="true"
+						maxlength="10" />
 				</div>
-			</div>			
-				
-			<p class="note">
-       			<b>If you would like to extend or improve the functionality of a component, follow these steps:</b><br/><br/>
-        			1. Find the JavaScript of the component you want to extend in the designer directory to get the current version of PrimeFaces.<br/>
-        			2. Copy part or all of this JavaScript to the `webContent` directory in your project. (in our case it is /webContent/js/InputTextExtension.js)<br/>
-        			3. Improve your JavaScript.<br/>
-        			4. Add a link to your JavaScript in your main XHTML file (e.g., `frame-10-full-width.xhtml`) as shown below:<br/>
-        		<pre><code><h:outputText value="&lt;h:outputScript name='layouts/js/InputTextExtension.js' /&gt;" escape="true" /></code></pre>
-    		</p>
+			</div>
+			<h:outputText
+				value="#{ivy.cms.co('/Dialogs/com/axonivy/demo/patterndemos/ui/primefacesextensions/PrimefacesExtensions/explanation')}"
+				escape="false"></h:outputText>
+			<pre>
+				<code>
+					<h:outputText
+						value="&lt;h:outputScript name='layouts/js/InputTextExtension.js' /&gt;"
+						escape="true" />
+				</code>
+			</pre>
+
 		</ui:define>
 	</ui:composition>
 </h:body>

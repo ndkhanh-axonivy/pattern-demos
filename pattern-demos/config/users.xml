@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<userConfig/>
+<userConfig>
+    <user>
+        <username>AppAdmin</username>
+        <fullName>Application Admin</fullName>
+        <role>ApplicationAdmin</role>
+    </user>
+</userConfig>

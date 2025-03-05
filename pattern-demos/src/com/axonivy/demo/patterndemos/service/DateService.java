@@ -1,5 +1,6 @@
 package com.axonivy.demo.patterndemos.service;
 
+import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -36,5 +37,16 @@ public class DateService {
 	 */
 	public String toDefaultString(Instant instant) {
 		return instant == null ? "" : LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).format(DEFAULT_INSTANT_FORMATTER);
+	}
+	
+	/**
+	 * Format a duration as seconds with milliseconds.
+	 *
+	 * @param duration
+	 * @return String
+	 */
+	public String toMilliString(Duration duration) {
+		double millis = duration.getSeconds() + duration.getNano() / 1000000000.0;
+		return duration == null ? "" : String.format("%.3f", millis);
 	}
 }

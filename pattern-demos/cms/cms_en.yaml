@@ -1,3 +1,6 @@
+Categories:
+  ADMIN:
+    name: Administration
 Dialogs:
   com:
     axonivy:
@@ -8,15 +11,18 @@ Dialogs:
               AdminTask:
                 checkLater: Check later
                 checkLaterTooltip: Keep this task to check later
-                description: Description
+                description: |-
+                  An admin task is a task that can handle a sensitive process we want to keep under control, such as a cron job, sending emails, or other processes. The main idea is to intervene at the end of the process to verify the result or step in if a problem occurs during the process.
+
+                  You can set buttons in the UI or backing bean for each scenario. In our demo, we provide the buttons 'Ignore', 'Done', 'Retry', and 'Check Later'. These allow you to ignore an error, rerun the process, accept the result, or defer checking it until later.
                 done: Done
                 doneTooltip: Done, continue process
-                ignore: ignore
+                ignore: Ignore
                 ignoreConfirmatationHeader: Continue?
                 ignoreConfirmatationMessage: Do you really want to ignore and continue the process?
                 ignoreTooltip: Ignore and continue process
                 retryTooltip: Retry the operation
-                title: Admin Decision
+                title: This is example of admin task. This task can be used for cronjobs, or other processes where admin check is necessary for the job.
               JobBackgroundNote:
                 details: |-
                   Press ''Start'' to start job ''{0}'' in the background. As soon as it is finished, the administrator gets a task to see the technical details of the execution.
@@ -27,6 +33,41 @@ Dialogs:
                 title: Job note
                 unlock: Unlock
                 unlockError: Job ''{0}'' could not be unlocked. Please check the logs.
+            placeholderevalvuator:
+              PlaceholderEvaluator:
+                chooseSalutation: Please choose salutation
+                firstName: First name
+                lastName: Last name
+                replace: Replace
+                reset: reset
+                title: Title
+                titleAfterName: Title after name
+            primefacesextensions:
+              PrimefacesExtensions:
+                description: In this extension we added check for byte length of input (instead of character length) to init method (PrimeFaces.widget.InputText.prototype.init).
+                explanation: "<b>If you would like to extend or improve the functionality of a component, follow these steps:</b><br/><br/>\n        \t\t\t1. Find the JavaScript of the component you want to extend in the designer directory to get the current version of PrimeFaces.<br/>\n        \t\t\t\
+                  2. Copy part or all of this JavaScript to the `webContent` directory in your project. (in our case it is /webContent/js/InputTextExtension.js)<br/>\n        \t\t\t3. Improve your JavaScript.<br/>\n        \t\t\t4. Add a link to your JavaScript in your main XHTML file (e.g., `frame-10-full-width.xhtml`)\
+                  \ as shown below:<br/>"
+                title: Primefaces extension of component p:inputText.
+Enums:
+  com:
+    axonivy:
+      demo:
+        patterndemos:
+          enums:
+            Salutation:
+              FORMAL:
+                format: Dear {Vorname} {Nachname}
+                name: formal
+              FORMAL_FEMALE:
+                format: Dear {Vorname} {Nachname}
+                name: female formal
+              FORMAL_MALE:
+                format: Dear {Vorname} {Nachname}
+                name: male formal
+              INFORMAL:
+                format: Dear {Vorname} {Nachname}
+                name: informal
 Labels:
   cancel: Cancel
   'no': 'No'
@@ -34,8 +75,12 @@ Labels:
   'yes': 'Yes'
 Processes:
   Descriptions:
+    backgroundJob: Technical task to execute a backgroundjobs.
+    checkJobResult: 'Check result of job ''''{0}''''. Overall Status: {1}'
     demoJob: Demo cron job.
   Names:
+    backgroundJob: Background job "{0}"
+    checkJobResult: Check result of job ''{0}'' with overall status ''{1}''.
     demoJob: 'Manual Jobstart: Demo job'
 Tasks:
   Description:

@@ -1,3 +1,6 @@
+Categories:
+  ADMIN:
+    name: Administration
 Dialogs:
   com:
     axonivy:
@@ -8,13 +11,18 @@ Dialogs:
               AdminTask:
                 checkLater: Später prüfen
                 checkLaterTooltip: Aufgabe behalten und später prüfen
+                description: |-
+                  Ein Admin-Task ist ein Task, der einen sensiblen Prozess abwickeln kann, den wir unter Kontrolle halten wollen, z. B. einen Cron-Job, das Versenden von E-Mails oder andere Prozesse. Die Hauptidee ist, am Ende des Prozesses einzugreifen, um das Ergebnis zu überprüfen oder einzugreifen, wenn während des Prozesses ein Problem auftritt.
+
+                  Sie können für jedes Szenario Schaltflächen in der Benutzeroberfläche oder der Backing Bean festlegen. In unserer Demo stellen wir die Schaltflächen „Ignorieren“, „Fertig“, „Wiederholen“ und „Später prüfen“ bereit. Damit können Sie einen Fehler ignorieren, den Prozess erneut ausführen, das Ergebnis akzeptieren oder die Überprüfung auf später verschieben.
                 done: Erledigt
                 doneTooltip: Erledigt, im Prozess weitergehen
-                ignore: ignore
+                ignore: Ignorieren Sie
                 ignoreConfirmatationHeader: Weiter?
                 ignoreConfirmatationMessage: Wollen Sie wirklich ignorieren und im Prozess weitergehen?
                 ignoreTooltip: Ignorieren und im Prozess weitergehen
                 retryTooltip: Operation erneut durchführen
+                title: Dies ist ein Beispiel für eine Verwaltungsaufgabe. Diese Aufgabe kann für Cronjobs oder andere Prozesse verwendet werden, bei denen eine Admin-Prüfung für den Auftrag erforderlich ist.
               JobBackgroundNote:
                 details: |-
                   Drücken Sie ''Start'' um den Job ''{0}'' im Hintergrund auszuführen. Sobald er beendet ist, erhält der Administrator eine Aufgabe mit den technischen Details der Ausführung.
@@ -22,8 +30,44 @@ Dialogs:
                   Zusätzliche Job Daten: ''{1}''
                 lockedNote: Der Job ''{0}'' ist gesperrt und läuft möglicherweise bereits. Um ihn dennoch auszuführen, muss er zuerst entsperrt werden.
                 start: Starten
+                title: Job Notiz
                 unlock: Entsperren
                 unlockError: Job ''{0}'' konnte nicht entsperrt werden. Bitte prüfen Sie die Logs.
+            placeholderevalvuator:
+              PlaceholderEvaluator:
+                chooseSalutation: Bitte Anrede wählen
+                firstName: Vornamen
+                lastName: Nachname
+                replace: Ersetzen.
+                reset: reset
+                title: Titel
+                titleAfterName: Titel nach dem Namen
+            primefacesextensions:
+              PrimefacesExtensions:
+                description: In dieser Erweiterung wurde die init-Methode (PrimeFaces widget.prototype.init) um die Prüfung der Byte-Länge der Eingabe (statt der Zeichenlänge) erweitert. Länge) zur init-Methode (PrimeFaces.widget.InputText.prototype.init) hinzugefügt.
+                explanation: "<b>IWenn Sie die Funktionalität einer Komponente erweitern oder verbessern möchten, gehen Sie folgendermaßen vor.</b><br/><br/>\n        \t\t\t1. Suchen Sie das JavaScript der Komponente, die Sie erweitern möchten, im Designer-Verzeichnis, um die aktuelle Version von PrimeFaces\
+                  \ zu erhalten.<br/>\n        \t\t\t2. Copy part or all of this JavaScript to the `webContent` directory in your project. (in our case it is /webContent/js/InputTextExtension.js).<br/>\n        \t\t\t3. Verbessern Sie Ihr JavaScript.<br/>\n        \t\t\t4. Fügen Sie einen Link zu Ihrem\
+                  \ JavaScript in Ihre XHTML-Hauptdatei ein (z. B. „frame-10-full-width.xhtml“), wie unten gezeigt.<br/>"
+                title: Primefaces-Erweiterung der Komponente p:inputText.
+Enums:
+  com:
+    axonivy:
+      demo:
+        patterndemos:
+          enums:
+            Salutation:
+              FORMAL:
+                format: S. g. {Titel vorangestellt} {Vorname} {Nachname} {Titel nachgestellt}
+                name: S.g.
+              FORMAL_FEMALE:
+                format: Sehr geehrte Frau {Titel vorangestellt} {Nachname} {Titel nachgestellt}
+                name: Sehr geehrte Frau
+              FORMAL_MALE:
+                format: Sehr geehrter Herr {Titel vorangestellt} {Nachname} {Titel nachgestellt}
+                name: Sehr geehrter Herr
+              INFORMAL:
+                format: Guten Tag, {Titel vorangestellt} {Vorname} {Nachname} {Titel nachgestellt}
+                name: 'Guten Tag, '
 Labels:
   cancel: Abbrechen
   'no': Nein
@@ -31,9 +75,13 @@ Labels:
   'yes': Ja
 Processes:
   Descriptions:
+    backgroundJob: Technische Aufgabe zur Ausführung eines Hintergrundjobs
+    checkJobResult: 'Überprüfen Sie das Ergebnis des Jobs ''''{0}''''. Gesamtstatus: {1}'
     demoJob: Demo cron job.
   Names:
-    demoJob: 'Manual Jobstart: Demo job'
+    backgroundJob: Background job "{0}"
+    checkJobResult: Überprüfen Sie das Ergebnis des Jobs ''{0}'' mit dem Gesamtstatus ''{1}''.
+    demoJob: 'Manueller Jobstart: Demo job'
 Tasks:
   Description:
     checkJobResult: |-

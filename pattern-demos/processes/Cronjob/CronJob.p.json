@@ -11,13 +11,13 @@
       "config" : {
         "javaClass" : "ch.ivyteam.ivy.process.eventstart.beans.TimerBean",
         "userConfig" : {
-          "time" : "demoStartCronJobPattern"
+          "time" : "com.axonivy.demo.patterndemos.job.demoStartCronJobPattern"
         },
         "link" : "eventLink.ivp"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 80 },
-        "labelOffset" : { "x" : 13, "y" : 33 }
+        "labelOffset" : { "x" : 9, "y" : 33 }
       },
       "connect" : [
         { "id" : "f2", "to" : "f1", "via" : [ { "x" : 144, "y" : 80 }, { "x" : 160, "y" : 112 } ] }
@@ -39,7 +39,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 144 }
+        "at" : { "x" : 96, "y" : 144 },
+        "labelOffset" : { "x" : 1, "y" : 33 }
       },
       "connect" : [
         { "id" : "f4", "to" : "f1", "via" : [ { "x" : 144, "y" : 144 }, { "x" : 160, "y" : 112 } ] }
@@ -52,10 +53,16 @@
         "runJob"
       ],
       "config" : {
-        "processCall" : "Cronjob/Job:runJob(String,Boolean,String)"
+        "processCall" : "Cronjob/Job:runJob(String,Boolean,String)",
+        "call" : {
+          "map" : {
+            "param.jobName" : "com.axonivy.demo.patterndemos.service.DemoJobService.DEMO_JOB_NAME",
+            "param.manual" : "in.manual"
+          }
+        }
       },
       "visual" : {
-        "at" : { "x" : 312, "y" : 112 }
+        "at" : { "x" : 424, "y" : 112 }
       },
       "connect" : [
         { "id" : "f6", "to" : "f5" }
@@ -64,8 +71,47 @@
       "id" : "f5",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 464, "y" : 112 },
+        "at" : { "x" : 576, "y" : 112 },
         "labelOffset" : { "x" : 13, "y" : 33 }
       }
+    }, {
+      "id" : "f7",
+      "type" : "ProcessAnnotation",
+      "name" : "Cron job - program start",
+      "visual" : {
+        "at" : { "x" : 205, "y" : 33 },
+        "size" : { "width" : 134, "height" : 62 },
+        "description" : [
+          "The cron job start configured with variable of: com.axonivy.demo.patterndemos.job.demoStartCronJobPattern",
+          "setup in variables.yaml."
+        ]
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f9",
+      "type" : "ProcessAnnotation",
+      "name" : "Cron job - manual start",
+      "visual" : {
+        "at" : { "x" : 200, "y" : 208 }
+      },
+      "connect" : [
+        { "id" : "f10", "to" : "f0" }
+      ]
+    }, {
+      "id" : "f11",
+      "type" : "ProcessAnnotation",
+      "name" : "Call sub process of Job",
+      "visual" : {
+        "at" : { "x" : 560, "y" : 208 },
+        "description" : [
+          "The job itself is speicfied by the parameter of jobName.",
+          "The job name is setup by the class of DemoJobService."
+        ]
+      },
+      "connect" : [
+        { "id" : "f12", "to" : "f1" }
+      ]
     } ]
 }

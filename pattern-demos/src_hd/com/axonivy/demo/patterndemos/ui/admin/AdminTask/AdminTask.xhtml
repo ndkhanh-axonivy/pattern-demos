@@ -2,14 +2,15 @@
 	xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
 	<ui:composition template="/layouts/frame-10-full-width.xhtml">
-		<ui:define name="title">#{ivy.cms.co('/Dialogs/com/axonivy/demo/patterndemos/ui/admin/AdminTask/title')}</ui:define>
+		<ui:define name="title">Admin Task</ui:define>
 		<ui:define name="content">
 
 			<h:form id="form">
 				<div class="ui-fluid">
 					<div class="grid">
 						<div class="col-12 md:col-12 lg:col-12">
-							<h2>#{ivy.cms.co('/Dialogs/com/axonivy/demo/patterndemos/ui/admin/AdminTask/description')}</h2>
+						<h2>#{ivy.cms.co('/Dialogs/com/axonivy/demo/patterndemos/ui/admin/AdminTask/title')}</h2>
+						<h3>#{ivy.cms.co('/Dialogs/com/axonivy/demo/patterndemos/ui/admin/AdminTask/description')}</h3>
 						</div>
 					</div>
 					<div class="grid">
@@ -19,7 +20,7 @@
 						<div class="grid">
 							<div class="col-12 md:col-12 lg:col-12">
 								<pre>
-									<h:outputText value="#{data.bean.details}" />
+									<h:outputText value="#{data.bean.details}"/>
 								</pre>
 							</div>
 						</div>

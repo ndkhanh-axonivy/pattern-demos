@@ -9,6 +9,7 @@ import java.util.function.Function;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.apache.logging.log4j.message.MessageFormatMessage;
 
 import com.axonivy.demo.patterndemos.Constants;
 import com.axonivy.demo.patterndemos.dao.JobStatusDAO;
@@ -22,15 +23,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import ch.ivyteam.ivy.bpm.error.BpmError;
+import ch.ivyteam.ivy.environment.Ivy;
 
 public class JobService {
 	private static final JobService INSTANCE = new JobService();
-//	private static final Logger LOG = LogService.get().getLogger();
 	public static String OK_MESSAGE = "OK";
 	private static final Map<String, JobDescription> jobRepository = Collections.synchronizedMap(new HashMap<>());
-	private static final ObjectMapper MAPPER = new ObjectMapper()
-			.registerModule(new JavaTimeModule())
-			;
+	private static final ObjectMapper MAPPER = new ObjectMapper().registerModule(new JavaTimeModule());
 
 	private JobService() {
 	}
@@ -81,9 +80,6 @@ public class JobService {
 	 */
 	public ServiceResult runJob(String jobName, boolean locked, Duration lockTimeout, Function<JobStatus, ServiceResult> function, String additionalJobData) {
 		Instant startTime = Instant.now();
-//		try (LogContext context = LogService.get().addToContext(LogType.JOB, Map.of("job.name", jobName))) {
-//			LOG.info("Starting Job ''{0}'' {1}.", jobName,
-//					locked ? MessageFormat.format("locked for a duration of {0}", lockTimeout) : "unlocked");
 		try {
 			
 			ServiceResult result = null;
@@ -103,7 +99,7 @@ public class JobService {
 		finally {
 			Instant endTime = Instant.now();
 			Duration duration = Duration.between(startTime, endTime);
-//			LOG.info("Ending Job ''{0}'', running for a duration of {1}s.", jobName, DateService.get().toMilliString(duration));
+			Ivy.log().info(new MessageFormatMessage("Ending Job ''{0}'', running for a duration of {1}s.", jobName, DateService.get().toMilliString(duration)).getFormattedMessage());
 		}
 	}
 
@@ -255,10 +251,8 @@ public class JobService {
 		jobStatus.setJobData(null);
 
 		jobStatus = saveJobStatus(jobStatus);
-
 		
-//		Ivy.log().info(MessageFormatter.format("Job ''{0}'' started at ''{1}'', additionalJobData: ''{2}''", jobStatus.getName(), DateService.get().toDefaultString(jobStatus.getStartTime()), jobStatus.getAdditionalJobData()).getMessage());
-
+		Ivy.log().info(new MessageFormatMessage("Job ''{0}'' started at ''{1}'', additionalJobData: ''{2}''", jobStatus.getName(), DateService.get().toDefaultString(jobStatus.getStartTime()), jobStatus.getAdditionalJobData()).getFormattedMessage());
 		return lastJobStatus;
 	}
 
@@ -289,13 +283,13 @@ public class JobService {
 		}
 
 		jobStatus = saveJobStatus(jobStatus);
-
-//		LOG.info("Job ''{0}'' started at ''{1}'' and ended at ''{2}'' with status ''{3}'', additionalJobData: ''{4}''",
-//				jobStatus.getName(),
-//				DateService.get().toDefaultString(jobStatus.getStartTime()),
-//				DateService.get().toDefaultString(jobStatus.getEndTime()),
-//				jobStatus.getRunStatus(),
-//				jobStatus.getAdditionalJobData());
+		
+		Ivy.log().info(new MessageFormatMessage("Job ''{0}'' started at ''{1}'' and ended at ''{2}'' with status ''{3}'', additionalJobData: ''{4}''",
+				jobStatus.getName(),
+				DateService.get().toDefaultString(jobStatus.getStartTime()),
+				DateService.get().toDefaultString(jobStatus.getEndTime()),
+				jobStatus.getRunStatus(),
+				jobStatus.getAdditionalJobData()).getFormattedMessage());
 
 		return jobStatus;
 	}

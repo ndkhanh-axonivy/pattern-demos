@@ -21,6 +21,14 @@
             "out.bean" : "new com.axonivy.demo.patterndemos.ui.admin.AdminTaskBean(param.task, param.details, param.buttons)"
           }
         },
+        "result" : {
+          "params" : [
+            { "name" : "decision", "type" : "com.axonivy.demo.patterndemos.enums.AdminDecision", "desc" : "" }
+          ],
+          "map" : {
+            "result.decision" : "in.bean.decision"
+          }
+        },
         "guid" : "1954CE62138AFC80"
       },
       "visual" : {
